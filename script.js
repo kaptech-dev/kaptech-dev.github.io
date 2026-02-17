@@ -1,13 +1,25 @@
-// Mendeteksi scroll untuk merubah tampilan Navbar
-const navbar = document.getElementById('navbar');
+// Initialize AOS (Animate on Scroll)
+AOS.init({
+    duration: 1000,
+    once: true,
+});
 
+// Navbar change background on scroll
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('nav-scrolled');
+    const nav = document.getElementById('main-nav');
+    if (window.scrollY > 100) {
+        nav.classList.add('nav-blur');
     } else {
-        navbar.classList.remove('nav-scrolled');
+        nav.classList.remove('nav-blur');
     }
 });
 
-// Pesan sambutan di Console (Opsional)
-console.log("%c Kaptech Dev Portfolio v1.0 ", "background: #3b82f6; color: white; font-weight: bold;");
+// Smooth Scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
