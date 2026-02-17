@@ -1,25 +1,30 @@
-// Initialize AOS (Animate on Scroll)
+// Initialize Animations
 AOS.init({
-    duration: 1000,
-    once: true,
+    duration: 800,
+    easing: 'ease-out-cubic',
+    once: true
 });
 
-// Navbar change background on scroll
+// Scroll Header Effect
+const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-    const nav = document.getElementById('main-nav');
-    if (window.scrollY > 100) {
-        nav.classList.add('nav-blur');
+    if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
     } else {
-        nav.classList.remove('nav-blur');
+        navbar.classList.remove('scrolled');
     }
 });
 
-// Smooth Scroll for anchor links
+// Smooth scroll to sections
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
     });
 });
