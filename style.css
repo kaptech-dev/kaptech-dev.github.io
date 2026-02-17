@@ -1,122 +1,37 @@
 body {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
-/* Gradient Text */
-.text-gradient {
-    background: linear-gradient(to right, #3b82f6, #818cf8, #60a5fa);
+.gradient-text {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* Nav Button Modern */
-.nav-btn {
-    position: relative;
-    padding: 8px 24px;
-    background: #3b82f6;
-    border-radius: 99px;
-    font-weight: 600;
-    font-size: 0.875rem;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.nav-btn:hover {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-    transform: translateY(-2px);
-}
-
-/* App Card Cyber Style */
-.app-card {
-    position: relative;
-    height: 400px;
-    background: #0f1115;
-    border-radius: 32px;
-    padding: 2px; /* For border gradient effect */
-    transition: all 0.5s ease;
-    cursor: pointer;
-}
-
-.card-inner {
-    position: relative;
-    background: #0f1115;
-    width: 100%;
-    height: 100%;
-    border-radius: 30px;
-    padding: 40px;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.app-card:hover {
-    transform: translateY(-10px) scale(1.02);
-}
-
-.app-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, transparent, #3b82f6, transparent);
-    transition: opacity 0.5s;
-    opacity: 0.2;
-}
-
-.app-card:hover::before {
-    opacity: 1;
-}
-
-.icon-box {
-    width: 60px;
-    height: 60px;
-    background: #1e293b;
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #3b82f6;
-    margin-bottom: 20px;
-}
-
-.tag {
-    background: rgba(255,255,255,0.05);
-    padding: 4px 12px;
-    border-radius: 99px;
-    font-size: 11px;
-    font-weight: 700;
+.nav-link {
     color: #94a3b8;
-}
-
-/* Navbar on Scroll */
-.nav-blur {
-    background: rgba(5, 5, 5, 0.7) !important;
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
-}
-
-/* Mouse Scroll Animation */
-.mouse {
-    width: 25px;
-    height: 45px;
-    border: 2px solid #3b82f6;
-    border-radius: 20px;
+    transition: all 0.3s ease;
     position: relative;
-    margin-top: 50px;
 }
-.mouse::after {
-    content: '';
-    width: 4px;
-    height: 8px;
-    background: #3b82f6;
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
-    animation: scroll 1.5s infinite;
+
+.nav-link:hover {
+    color: #fff;
 }
-@keyframes scroll {
-    0% { opacity: 1; transform: translate(-50%, 0); }
-    100% { opacity: 0; transform: translate(-50%, 20px); }
+
+#navbar.scrolled {
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(15px);
+    height: 70px;
+}
+
+.feat-box {
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background: linear-gradient(to bottom right, rgba(255,255,255,0.03), transparent);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Card hover animation enhancement */
+.group:hover {
+    background: #0f172a;
 }
