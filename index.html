@@ -3,71 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaptech-dev | Modern Utility Apps</title>
+    <title>Kaptech-dev | Future Utility</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-900 text-slate-200">
+<body class="bg-[#050505] text-white overflow-x-hidden">
 
-    <nav id="navbar" class="fixed w-full z-50 px-6 py-4 transition-all duration-300">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <span class="text-2xl font-black tracking-tighter text-white">kaptech<span class="text-blue-500">.</span>dev</span>
-            <div class="flex items-center gap-6">
-                <a href="#apps" class="hidden md:block hover:text-blue-400 font-medium transition">My Apps</a>
-                <a href="https://github.com/kaptech-dev" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-blue-500/20 transition">GitHub</a>
+    <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 blur-[120px] rounded-full -z-10"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-600/20 blur-[120px] rounded-full -z-10"></div>
+
+    <nav class="fixed w-full z-[100] px-6 py-5 transition-all duration-500" id="main-nav">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="logo-container">
+                <span class="text-2xl font-bold tracking-tighter italic">KAPTECH<span class="text-blue-500">.DEV</span></span>
+            </div>
+            <div class="flex items-center gap-8">
+                <a href="#apps" class="hidden md:block text-sm font-medium hover:text-blue-400 transition">Works</a>
+                <a href="https://github.com/kaptech-dev" target="_blank" class="nav-btn">
+                    <span>GitHub</span>
+                </a>
             </div>
         </div>
     </nav>
 
-    <section class="relative pt-40 pb-20 px-6 overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent -z-10"></div>
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
-                Crafting <span class="gradient-text">Utility Tools</span> for Android
+    <header class="min-h-screen flex flex-col justify-center items-center px-6 text-center">
+        <div data-aos="zoom-out" data-aos-duration="1500">
+            <span class="px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-[0.3em] mb-8 inline-block">
+                Available for Android
+            </span>
+            <h1 class="text-6xl md:text-8xl font-bold tracking-tight mb-6 leading-none">
+                BUILDING THE <br><span class="text-gradient">NEXT UTILITY.</span>
             </h1>
-            <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10">
-                Sederhana, praktis, dan modern. Kami fokus membangun aplikasi yang mempermudah tugas digital Anda setiap hari.
+            <p class="text-gray-400 max-w-xl mx-auto text-lg md:text-xl mb-10 font-light">
+                Menciptakan alat digital yang minimalis, cepat, dan fungsional untuk memudahkan hidup Anda.
+            </p>
+            <a href="#apps" class="scroll-indicator">
+                <div class="mouse"></div>
+            </a>
+        </div>
+    </header>
+
+    <section id="apps" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
+            <div data-aos="fade-right">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Selected Projects</h2>
+                <div class="h-1 w-20 bg-blue-500 rounded-full"></div>
+            </div>
+            <p class="text-gray-500 max-w-sm" data-aos="fade-left">
+                Koleksi aplikasi utilitas yang dirancang dengan fokus pada pengalaman pengguna.
             </p>
         </div>
-    </section>
 
-    <section id="apps" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex items-center gap-4 mb-16">
-                <h2 class="text-3xl font-bold text-white whitespace-nowrap">Aplikasi Saya</h2>
-                <div class="h-[1px] w-full bg-slate-800"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <div class="app-card group">
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="p-4 bg-blue-500/10 rounded-2xl text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <span class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 border border-slate-700 px-3 py-1 rounded-full">Android</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="app-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-inner">
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">Nama Aplikasi 1</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Deskripsi singkat tentang aplikasi Android Anda yang pertama. Jelaskan kegunaan utamanya di sini.
-                    </p>
-                    <a href="#" class="inline-flex items-center gap-2 text-blue-400 font-bold text-sm hover:underline">
-                        Lihat Detail <span class="group-hover:translate-x-1 transition-transform">→</span>
-                    </a>
+                    <div class="mt-20">
+                        <h3 class="text-2xl font-bold mb-2 text-white">Project Name</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            Aplikasi utilitas pertama Anda. Fokus pada kecepatan dan kemudahan penggunaan di Android.
+                        </p>
+                        <div class="flex gap-3">
+                            <span class="tag">Android</span>
+                            <span class="tag">Tailwind</span>
+                        </div>
+                    </div>
+                    <div class="card-glow"></div>
                 </div>
-                </div>
-        </div>
+            </div>
+            </div>
     </section>
 
-    <footer class="py-12 text-center border-t border-slate-800/50">
-        <p class="text-slate-500 text-xs tracking-widest uppercase">&copy; 2026 Kaptech Dev</p>
+    <footer class="py-20 border-t border-white/5 text-center">
+        <p class="text-gray-600 text-sm tracking-widest uppercase">© 2026 Kaptech Dev • Innovating Simplicity</p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
