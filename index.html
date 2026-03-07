@@ -1,0 +1,157 @@
+<!-- Project: Kaptech Portfolio | File: index.html | Description: Halaman utama portofolio Kaptech Development -->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaptech | Simple, Practical & Modern Utility Apps</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: 'var(--color-primary)',
+                            light: 'var(--color-primary-light)',
+                            dark: 'var(--color-primary-dark)',
+                        },
+                        ui: {
+                            dark: 'var(--bg-dark)',
+                            card: 'var(--bg-card)',
+                            'card-hover': 'var(--bg-card-hover)',
+                            border: 'var(--border-color)',
+                            navbar: 'var(--navbar-bg)',
+                        },
+                        txt: {
+                            main: 'var(--text-main)',
+                            muted: 'var(--text-muted)',
+                            dim: 'var(--text-dim)',
+                            dark: 'var(--text-dark)',
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-brand': 'var(--gradient-primary)',
+                    },
+                    boxShadow: {
+                        'premium': 'var(--shadow-premium)',
+                        'premium-hover': 'var(--shadow-hover)',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Theme & Global Styles -->
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-ui-dark text-txt-muted">
+
+    <nav class="fixed w-full z-[100] border-b border-ui-border" id="navbar">
+        <div id="navbar-container" class="max-w-7xl mx-auto px-6 h-28 flex justify-between items-center transition-all duration-500">
+            <div class="flex items-center gap-2">
+                <img src="assets/kaptech_logo.png" alt="Kaptech Logo" class="brand-logo h-20 w-auto object-contain transition-all duration-500">
+            </div>
+            
+            <div class="hidden md:flex items-center gap-10 text-sm font-bold tracking-wide">
+                <a href="#home" class="nav-link">HOME</a>
+                <a href="#features" class="nav-link">FEATURES</a>
+                <a href="#apps" class="nav-link">OUR APPS</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative pt-44 pb-32 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-txt-main mb-6 tracking-tight leading-[1.1]" data-aos="fade-up">
+                Simple, Practical & <br>
+                <span class="gradient-text">Modern Utility Apps</span>
+            </h1>
+            <p class="text-lg md:text-xl text-txt-muted max-w-2xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="100">
+                Crafting high-performance Android tools, Chrome Extensions, and MQL5 Expert Advisors designed to automate and simplify your digital ecosystem.
+            </p>
+            <div class="flex justify-center" data-aos="fade-up" data-aos-delay="200">
+                <a href="#apps" class="bg-brand-primary text-white px-10 py-4 rounded-full font-extrabold hover:bg-brand-dark transition-all shadow-premium hover:shadow-premium-hover hover:-translate-y-1 active:scale-95 text-sm uppercase tracking-widest">
+                    Browse Portfolio
+                </a>
+            </div>
+        </div>
+        <div class="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] pointer-events-none -z-10"></div>
+    </section>
+
+    <section id="features" class="py-24 bg-ui-dark/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="feat-box" data-aos="fade-up">
+                    <div class="text-brand-primary mb-4 font-black text-4xl">01.</div>
+                    <h3 class="text-xl font-bold text-txt-main mb-2">Simplicity First</h3>
+                    <p class="text-txt-muted">Interfaces that anyone can use without a manual. Clean and distraction-free.</p>
+                </div>
+                <div class="feat-box" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-brand-primary mb-4 font-black text-4xl">02.</div>
+                    <h3 class="text-xl font-bold text-txt-main mb-2">Highly Practical</h3>
+                    <p class="text-txt-muted">Solving real-world problems with effective and lightweight solutions across mobile, web, and trading platforms.</p>
+                </div>
+                <div class="feat-box" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-brand-primary mb-4 font-black text-4xl">03.</div>
+                    <h3 class="text-xl font-bold text-txt-main mb-2">Modern Stack</h3>
+                    <p class="text-txt-muted">Built with the latest technologies to ensure speed, security, and stability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apps" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16" data-aos="fade-right">
+                <p class="text-brand-primary font-bold tracking-widest text-sm mb-3">PORTFOLIO</p>
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <h2 class="text-5xl font-black text-txt-main tracking-tight mb-6">Featured <span class="text-brand-primary">Project</span> List</h2>
+                        <div id="expand-trigger" class="inline-flex items-center gap-3 px-5 py-2.5 bg-white border border-ui-border rounded-full cursor-pointer group/btn hover:border-brand-primary hover:shadow-premium transition-all active:scale-95">
+                            <div class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></div>
+                            <span id="project-counter" class="text-txt-main font-bold text-xs uppercase tracking-wider group-hover/btn:text-brand-primary transition-colors">Showing 0 Projects</span>
+                            <svg class="w-4 h-4 text-txt-dim group-hover/btn:text-brand-primary transition-all group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div id="project-slider-wrapper" class="slider-active">
+                    <div id="project-grid" class="flex gap-8 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-10 -mx-4 px-4 md:mx-0 md:px-0">
+                        <!-- Content will be injected by script.js -->
+                    </div>
+                </div>
+                
+                <!-- Navigation Dots -->
+                <div id="slider-dots" class="flex justify-center gap-3 mt-4 transition-all duration-500">
+                    <!-- Dots will be injected by script.js -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-ui-dark border-t border-ui-border pt-20 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-center md:text-left">
+                <img src="assets/kaptech_logo.png" alt="Kaptech Logo" class="h-24 w-auto object-contain mb-6 mx-auto md:mx-0">
+                <p class="text-txt-muted max-w-sm">Software development for simple, practical, and modern utility applications.</p>
+            </div>
+            <div class="flex gap-6">
+                <a href="https://github.com/kaptech-dev" target="_blank" class="text-txt-muted hover:text-brand-primary transition font-medium">GitHub</a>
+                <a href="#" class="text-txt-muted hover:text-brand-primary transition font-medium">Linktree</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-16 pt-10 pb-10 border-t border-ui-border flex flex-col items-center justify-center text-center gap-4">
+            <a href="privacy-policy.html" class="text-xs text-txt-muted uppercase tracking-[0.2em] hover:text-txt-main transition-all duration-300">Privacy Policy</a>
+            <p class="text-[10px] text-txt-dark uppercase tracking-[0.3em]">© 2026 Kaptech Development. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

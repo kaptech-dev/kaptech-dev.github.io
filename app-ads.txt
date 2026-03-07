@@ -1,0 +1,13 @@
+# Project: Kaptech Portfolio | File: app-ads.txt | Description: Verifikasi kepemilikan iklan untuk Google AdMob
+# ==========================================
+# DAFTAR DATA ILAN KAPTECH DEV oleh IAB Tech Lab (Interactive Advertising Bureau)
+# ==========================================
+
+# 1. Aplikasi Counter Tasbih Pro: Zikir App
+# Nama Paket: com.kaptech.countertasbihdigital
+google.com, pub-9130761109961234, DIRECT, f08c47fec0942fa0
+
+# 2. Aplikasi RiseSocial: Profil Booster
+# Nama Paket: com.kaptech.countertasbihdigital
+
+

@@ -1,0 +1,28 @@
+/* Project: Kaptech Portfolio | File: theme.css | Description: Variabel warna dan tema sentral untuk konsistensi desain (Light Mode) */
+:root {
+  /* Brand Colors */
+  --color-primary: #2563eb;
+  --color-primary-light: #3b82f6;
+  --color-primary-dark: #1d4ed8;
+
+  /* Background Colors */
+  --bg-dark: #ffffff;
+  --bg-card: #f8fafc;
+  --bg-card-hover: #ffffff;
+  
+  /* Text Colors */
+  --text-main: #020617;
+  --text-muted: #334155;
+  --text-dim: #64748b;
+  --text-dark: #94a3b8;
+
+  /* UI Elements */
+  --border-color: rgba(0, 0, 0, 0.05);
+  --navbar-bg: rgba(255, 255, 255, 0.9);
+  --selection-bg: #bfdbfe;
+  --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.02), 0 10px 10px -5px rgba(0, 0, 0, 0.01);
+  --shadow-hover: 0 25px 50px -12px rgba(37, 99, 235, 0.1);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+}
