@@ -1,4 +1,14 @@
 // Project: Kaptech Portfolio | File: script.js | Description: Logika interaksi dan animasi untuk portofolio
+
+// Register Service Worker for Offline Caching (Ultra-Fast Standby)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('Kaptech Service Worker: Aktif!'))
+      .catch(err => console.log('Kaptech Service Worker: Gagal!', err));
+  });
+}
+
 // Initialize Animations
 AOS.init({
   duration: 800,
@@ -195,19 +205,14 @@ const PORTFOLIO_DATA = [
 ];
 
 // Dynamic Project Renderer
-const renderProjects = () => {
-    const grid = document.getElementById("project-grid");
-    const counter = document.getElementById("project-counter");
-    const dotsContainer = document.getElementById("slider-dots");
+// Helper: Generate HTML untuk satu kartu projek
+const generateCardHTML = (project, index, isCloned = false) => {
+    const aosDelay = (index % PORTFOLIO_DATA.length) * 100;
+    // AOS hanya untuk item non-kloning (Grup B) agar ringan
+    const aosAttr = isCloned ? '' : `data-aos="fade-up" data-aos-delay="${aosDelay}"`;
     
-    if (!grid) return;
-
-    // 1. Triple Cloning - Render data 3x untuk loop tanpa henti
-    // Grup A (Awal) - Grup B (Konten Utama) - Grup C (Akhir)
-    const tripleData = [...PORTFOLIO_DATA, ...PORTFOLIO_DATA, ...PORTFOLIO_DATA];
-    
-    grid.innerHTML = tripleData.map((project, index) => `
-        <div class="group bg-white border border-ui-border rounded-3xl overflow-hidden hover:border-brand-primary transition-all duration-500 shadow-premium hover:shadow-premium-hover shrink-0 ${(index < PORTFOLIO_DATA.length || index >= PORTFOLIO_DATA.length * 2) ? 'cloned-item' : ''}" data-aos="fade-up" data-aos-delay="${(index % PORTFOLIO_DATA.length) * 100}">
+    return `
+        <div class="group bg-white border border-ui-border rounded-3xl overflow-hidden hover:border-brand-primary transition-all duration-500 shadow-premium hover:shadow-premium-hover shrink-0 ${isCloned ? 'cloned-item' : ''}" ${aosAttr}>
             <div class="h-56 bg-white flex items-center justify-center p-10 relative">
                 <div class="w-full h-full bg-white rounded-xl border border-ui-border flex items-center justify-center text-txt-main font-semibold text-sm group-hover:scale-105 transition-transform duration-500 text-center px-4 overflow-hidden">
                     ${project.image ? 
@@ -232,32 +237,61 @@ const renderProjects = () => {
                 </div>
             </div>
         </div>
-    `).join("");
+    `;
+};
 
-    // 2. Render Navigation Dots (Hanya 4 dot sesuai data asli)
+const renderProjects = () => {
+    const grid = document.getElementById("project-grid");
+    const counter = document.getElementById("project-counter");
+    const dotsContainer = document.getElementById("slider-dots");
+    
+    if (!grid) return;
+
+    // --- INSTANT LOAD CACHE ENGINE (STANDBY 12 CARDS FIRST) ---
+    const CACHE_KEY = "kaptech_portfolio_main_group_cache";
+    const cachedHTML = localStorage.getItem(CACHE_KEY);
+    
+    // Tahap 1: Tampilkan Grup Utama Secepat Kilat (Standby)
+    if (cachedHTML && grid.innerHTML.trim() === "") {
+        grid.innerHTML = cachedHTML;
+    } else {
+        const mainGroupHTML = PORTFOLIO_DATA.map((p, i) => generateCardHTML(p, i, false)).join("");
+        grid.innerHTML = mainGroupHTML;
+        localStorage.setItem(CACHE_KEY, mainGroupHTML);
+    }
+
+    // Update Counter segera agar user tahu jumlahnya
+    if (counter) counter.textContent = `Showing ${PORTFOLIO_DATA.length} Projects`;
+    
+    // Render Dots Awal
     if (dotsContainer) {
-        dotsContainer.innerHTML = PORTFOLIO_DATA.map((_, i) => `
-            <div class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>
-        `).join("");
+        dotsContainer.innerHTML = PORTFOLIO_DATA.map((_, i) => `<div class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`).join("");
     }
 
-    if (counter) {
-        counter.textContent = `Showing ${PORTFOLIO_DATA.length} Projects`;
-    }
+    // Refresh AOS untuk 12 kartu utama agar langsung animasi
+    setTimeout(() => { AOS.refresh(); }, 100);
 
-    AOS.refresh();
-
-    // Set posisi awal ke tengah (Grup B) setelah render
+    // Tahap 2: Suntikan Kloningan (Grup A & C) di Latar Belakang (Anti-Freeze)
     setTimeout(() => {
+        const groupA_HTML = PORTFOLIO_DATA.map((p, i) => generateCardHTML(p, i, true)).join("");
+        const groupC_HTML = PORTFOLIO_DATA.map((p, i) => generateCardHTML(p, i, true)).join("");
+        
+        // Gunakan insertAdjacent untuk kecepatan maksimal tanpa me-render ulang Grup B
+        grid.insertAdjacentHTML('afterbegin', groupA_HTML);
+        grid.insertAdjacentHTML('beforeend', groupC_HTML);
+        
+        // Setelah disuntik, set posisi scroll ke tengah (Grup B)
         const cards = grid.querySelectorAll('.group');
         if (cards.length > 0) {
             const cardWidth = cards[0].offsetWidth + 32;
             grid.scrollLeft = PORTFOLIO_DATA.length * cardWidth;
             currentSlideIndex = PORTFOLIO_DATA.length;
         }
-    }, 100);
-};
 
+        // --- INISIALISASI SLIDER SETELAH SEMUA KONTEN SIAP ---
+        initSliderOnce();
+    }, 500); // Jeda 500ms agar browser stabil dulu
+};
 // --- INTERACTION LOGIC ---
 
 let autoScrollInterval;
@@ -400,8 +434,16 @@ const initSlider = () => {
     startAutoScroll();
 }
 
+let isSliderInitialized = false;
+const initSliderOnce = () => {
+    if (isSliderInitialized) return;
+    initSlider();
+    isSliderInitialized = true;
+};
+
 // Initialize on Load
 window.addEventListener("DOMContentLoaded", () => {
+    // Hanya panggil renderProjects, slider akan diinisialisasi secara internal
+    // setelah proses Incremental Rendering selesai.
     renderProjects();
-    initSlider();
 });
