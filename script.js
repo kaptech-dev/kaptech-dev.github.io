@@ -42,7 +42,7 @@ const PORTFOLIO_DATA = [
         linkText: "VIEW ON PLAYSTORE",
         colorClass: "bg-brand-primary",
         tagColor: "text-brand-light",
-        image: "assets/android_icon_countertasbih.png",
+        image: "assets/android_icon_countertasbih.webp",
         previewText: "Counter Tasbih Pro"
     },
         {
@@ -54,7 +54,7 @@ const PORTFOLIO_DATA = [
         linkText: "VIEW ON PLAYSTORE",
         colorClass: "bg-brand-primary",
         tagColor: "text-brand-light",
-        image: "assets/android_icon_risesocial.png",
+        image: "assets/android_icon_risesocial.webp",
         previewText: "RiseSocial Preview"
     },
     {
@@ -66,7 +66,7 @@ const PORTFOLIO_DATA = [
         linkText: "PRIVATE USE (CHROME WEB STORE SOON)",
         colorClass: "bg-orange-500",
         tagColor: "text-orange-400",
-        image: "assets/extention_icon_facebokkall.png",
+        image: "assets/extention_icon_facebokkall.webp",
         previewText: "Chrome Ext Preview"
     },
         {
@@ -78,7 +78,7 @@ const PORTFOLIO_DATA = [
         linkText: "PRIVATE USE (CHROME WEB STORE SOON)",
         colorClass: "bg-orange-500",
         tagColor: "text-orange-400",
-        image: "assets/extention_icon_ytpersonal.png",
+        image: "assets/extention_icon_ytpersonal.webp",
         previewText: "Chrome Ext Preview"
     },
          {
@@ -90,7 +90,7 @@ const PORTFOLIO_DATA = [
         linkText: "PRIVATE USE (CHROME WEB STORE SOON)",
         colorClass: "bg-orange-500",
         tagColor: "text-orange-400",
-        image: "assets/extention_icon_ytall.png", 
+        image: "assets/extention_icon_ytall.webp", 
         previewText: "Chrome Ext Preview"
     },
         {
@@ -102,7 +102,7 @@ const PORTFOLIO_DATA = [
         linkText: "PRIVATE USE (CHROME WEB STORE SOON)",
         colorClass: "bg-orange-500",
         tagColor: "text-orange-400",
-        image: "assets/extention_icon_exporttiktok.png",
+        image: "assets/extention_icon_exporttiktok.webp",
         previewText: "Chrome Ext Preview"
     },
         {
@@ -114,7 +114,7 @@ const PORTFOLIO_DATA = [
         linkText: "PRIVATE USE (CHROME WEB STORE SOON)",
         colorClass: "bg-orange-500",
         tagColor: "text-orange-400",
-        image: "assets/extention_icon_exportinstagram.png",
+        image: "assets/extention_icon_exportinstagram.webp",
         previewText: "Chrome Ext Preview"
     },
         {
@@ -126,7 +126,7 @@ const PORTFOLIO_DATA = [
         linkText: "PRIVATE USE (MQL5 MARKET SOON)",
         colorClass: "bg-emerald-500",
         tagColor: "text-emerald-400",
-        image: "assets/mql5_ea_BMAAutoEntryKaptech.jpg",
+        image: "assets/mql5_ea_BMAAutoEntryKaptech.webp",
         previewText: "MT5 EA Preview"
     },
     {
@@ -138,7 +138,7 @@ const PORTFOLIO_DATA = [
         linkText: "PRIVATE USE (MQL5 MARKET SOON)",
         colorClass: "bg-emerald-500",
         tagColor: "text-emerald-400",
-        image: "assets/mql5_ea_autoRunAgresifBuyLayer.jpg",
+        image: "assets/mql5_ea_autoRunAgresifBuyLayer.webp",
         previewText: "MT5 EA Preview"
     },
         {
@@ -150,7 +150,7 @@ const PORTFOLIO_DATA = [
         linkText: "PRIVATE USE (MQL5 MARKET SOON)",
         colorClass: "bg-emerald-500",
         tagColor: "text-emerald-400",
-        image: "assets/mql5_ea_autoRunAgresifSellLayer.jpg",
+        image: "assets/mql5_ea_autoRunAgresifSellLayer.webp",
         previewText: "MT5 EA Preview"
     },
         {
@@ -162,7 +162,7 @@ const PORTFOLIO_DATA = [
         linkText: "COMMERCIAL USE (DOWNLOAD, MQL5 MARKET SOON )",
         colorClass: "bg-emerald-500",
         tagColor: "text-emerald-400",
-        image: "assets/mql5_ea_UniversalSLTPManager.jpg",
+        image: "assets/mql5_ea_UniversalSLTPManager.webp",
         previewText: "MT5 EA Preview"
     },
         {
@@ -174,7 +174,7 @@ const PORTFOLIO_DATA = [
         linkText: "COMMERCIAL USE (DOWNLOAD, MQL5 MARKET SOON )",
         colorClass: "bg-emerald-500",
         tagColor: "text-emerald-400",
-        image: "assets/mql5_script_AutoCloseManager.jpg",
+        image: "assets/mql5_script_AutoCloseManager.webp",
         previewText: "MT5 SCRIPT Preview"
     }
     /* 
@@ -188,7 +188,7 @@ const PORTFOLIO_DATA = [
         linkText: "TEKS TOMBOL",
         colorClass: "bg-brand-primary", // Pilihan: bg-orange-500, bg-emerald-500, dll
         tagColor: "text-brand-light", // Sesuaikan dengan colorClass
-        image: "assets/nama_file.png", // Kosongkan jika belum ada gambar
+        image: "assets/nama_file.webp", // Kosongkan jika belum ada gambar
         previewText: "Teks Pengganti Gambar"
     },
     */
