@@ -46,9 +46,73 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Theme & Global Styles -->
-    <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Inline Critical Styles for Zero-Loading -->
+    <style>
+        /* Variabel warna dan tema sentral untuk konsistensi desain (Light Mode) */
+        :root {
+          --color-primary: #2563eb;
+          --color-primary-light: #3b82f6;
+          --color-primary-dark: #1d4ed8;
+          --bg-dark: #ffffff;
+          --bg-card: #f8fafc;
+          --bg-card-hover: #ffffff;
+          --text-main: #020617;
+          --text-muted: #334155;
+          --text-dim: #64748b;
+          --text-dark: #94a3b8;
+          --border-color: rgba(0, 0, 0, 0.05);
+          --navbar-bg: rgba(255, 255, 255, 0.9);
+          --selection-bg: #bfdbfe;
+          --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.02), 0 10px 10px -5px rgba(0, 0, 0, 0.01);
+          --shadow-hover: 0 25px 50px -12px rgba(37, 99, 235, 0.1);
+          --gradient-primary: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+        }
+
+        /* Selection & Global states */
+        ::selection { background-color: var(--selection-bg); color: var(--text-main); }
+        body { font-family: "Inter", sans-serif; background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; }
+        .gradient-text { background: var(--gradient-primary); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-link { color: var(--text-muted); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; letter-spacing: 0.05em; }
+        .nav-link:hover { color: var(--text-main); text-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--gradient-primary); transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        #navbar { background: white; transition: all 0.5s ease; }
+        #navbar.scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03); }
+        #navbar.scrolled #navbar-container { height: 70px; }
+        #navbar.scrolled .brand-logo { height: 45px; }
+        .feat-box { padding: 2rem; border-radius: 1.5rem; background: var(--bg-card); border: 1px solid var(--border-color); box-shadow: var(--shadow-premium); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .feat-box:hover { transform: translateY(-10px); background: var(--bg-card-hover); box-shadow: var(--shadow-hover); border-color: var(--color-primary-light); }
+        .group:hover { background: var(--bg-card-hover); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        #project-grid { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .no-snap { scroll-snap-type: none !important; }
+        .slider-active #project-grid > div { flex: 0 0 85%; min-width: 85%; scroll-snap-align: center; }
+        @media (min-width: 768px) { .slider-active #project-grid > div { flex: 0 0 calc(50% - 1rem); min-width: calc(50% - 1rem); } }
+        @media (min-width: 1024px) { .slider-active #project-grid > div { flex: 0 0 calc(33.333% - 1.35rem); min-width: calc(33.333% - 1.35rem); } }
+        .grid-active #project-grid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); flex-wrap: wrap; overflow-x: visible; padding-bottom: 0; margin-left: 0; margin-right: 0; }
+        @media (min-width: 768px) { .grid-active #project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (min-width: 1024px) { .grid-active #project-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        .grid-active #project-grid > div { min-width: 0; width: 100%; }
+        .grid-active .cloned-item { display: none !important; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-color); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+        .dot.active { background: var(--color-primary); width: 30px; border-radius: 10px; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+        .hidden-nav { opacity: 0; pointer-events: none; transform: translateY(10px); }
+    </style>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Kaptech SW: Aktif!'))
+                    .catch(err => console.log('Kaptech SW: Gagal!', err));
+            });
+        }
+    </script>
 </head>
 <body class="bg-ui-dark text-txt-muted">
 
@@ -155,6 +219,297 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+    
+    <!-- Full Inline Performance Engine (Zero External JS Requests) -->
+    <script>
+        // --- PORTFOLIO DATA (Source of Truth) ---
+        const PORTFOLIO_DATA = [
+            {
+                title: "Counter Tasbih Pro: Zikir App",
+                category: "ANDROID",
+                tags: ["Utility", "Zikir App"],
+                description: "Digital Tasbih with premium interface, vibration feedback, and daily zikir tracking to enhance your spiritual journey.",
+                link: "https://play.google.com/store/apps/details?id=com.kaptech.countertasbihdigital",
+                linkText: "VIEW ON PLAYSTORE",
+                colorClass: "bg-brand-primary",
+                tagColor: "text-brand-light",
+                image: "assets/android_icon_countertasbih.webp",
+                previewText: "Counter Tasbih Pro"
+            },
+            {
+                title: "RiseSocial: Profil Booster",
+                category: "ANDROID",
+                tags: ["Productivity", "Social Tool"],
+                description: "Optimize your social media presence with advanced profiling tools and engagement analytics built for growth.",
+                link: "#",
+                linkText: "VIEW ON PLAYSTORE",
+                colorClass: "bg-brand-primary",
+                tagColor: "text-brand-light",
+                image: "assets/android_icon_risesocial.webp",
+                previewText: "RiseSocial Preview"
+            },
+            {
+                title: "FB Web Auto Comment Bot",
+                category: "EXTENTION",
+                tags: ["Productivity", "CHROME"],
+                description: "Facebook comment automation with multi-payload support and real-time logs.",
+                link: "#",
+                linkText: "PRIVATE USE (CHROME WEB STORE SOON)",
+                colorClass: "bg-orange-500",
+                tagColor: "text-orange-400",
+                image: "assets/extention_icon_facebokkall.webp",
+                previewText: "Chrome Ext Preview"
+            },
+            {
+                title: "YT Shorts Auto Comment ",
+                category: "EXTENTION",
+                tags: ["Productivity", "CHROME"],
+                description: "Intelligent and silent YouTube Shorts comment automation to boost engagement for only your channel",
+                link: "#",
+                linkText: "PRIVATE USE (CHROME WEB STORE SOON)",
+                colorClass: "bg-orange-500",
+                tagColor: "text-orange-400",
+                image: "assets/extention_icon_ytpersonal.webp",
+                previewText: "Chrome Ext Preview"
+            },
+            {
+                title: "YT Shorts Pro Scroll & Comment",
+                category: "EXTENTION",
+                tags: ["Productivity", "CHROME"],
+                description: "Boost engagement across multiple channels with intelligent and silent YouTube Shorts comment automation.",
+                link: "#",
+                linkText: "PRIVATE USE (CHROME WEB STORE SOON)",
+                colorClass: "bg-orange-500",
+                tagColor: "text-orange-400",
+                image: "assets/extention_icon_ytall.webp", 
+                previewText: "Chrome Ext Preview"
+            },
+            {
+                title: "TT Followers Export",
+                category: "EXTENTION",
+                tags: ["Productivity", "CHROME"],
+                description: "Export Tiktok followers to CSV with real-time logging and human-like behavior simulation.",
+                link: "#",
+                linkText: "PRIVATE USE (CHROME WEB STORE SOON)",
+                colorClass: "bg-orange-500",
+                tagColor: "text-orange-400",
+                image: "assets/extention_icon_exporttiktok.webp",
+                previewText: "Chrome Ext Preview"
+            },
+            {
+                title: "IG Followers Export - Premium Scraper",
+                category: "EXTENTION",
+                tags: ["Productivity", "CHROME"],
+                description: "Export Instagram followers to CSV with real-time logging and human-like behavior simulation.",
+                link: "#",
+                linkText: "PRIVATE USE (CHROME WEB STORE SOON)",
+                colorClass: "bg-orange-500",
+                tagColor: "text-orange-400",
+                image: "assets/extention_icon_exportinstagram.webp",
+                previewText: "Chrome Ext Preview"
+            },
+            {
+                title: "ea_BMAAutoEntryKaptech",
+                category: "MQL5 EA",
+                tags: ["Trading", "Expert Advisor"],
+                description: "Optimized specifically for the XAUUSD (Gold) M1 timeframe, BMAAutoEntry is an advanced execution tool designed for precision scalping. It combines rapid entry logic with robust risk management to handle the high volatility of the gold market.",
+                link: "#",
+                linkText: "PRIVATE USE (MQL5 MARKET SOON)",
+                colorClass: "bg-emerald-500",
+                tagColor: "text-emerald-400",
+                image: "assets/mql5_ea_BMAAutoEntryKaptech.webp",
+                previewText: "MT5 EA Preview"
+            },
+            {
+                title: "ea_autoRunAgresifBuyLayer",
+                category: "MQL5 EA",
+                tags: ["Trading", "Expert Advisor"],
+                description: "A specialized execution system engineered specifically for XAUUSD (Gold) on the M1 timeframe. This version is strictly optimized for Buy-Only strategies, allowing you to capitalize on bullish trends with lightning-fast entries and automated risk management.",
+                link: "#",
+                linkText: "PRIVATE USE (MQL5 MARKET SOON)",
+                colorClass: "bg-emerald-500",
+                tagColor: "text-emerald-400",
+                image: "assets/mql5_ea_autoRunAgresifBuyLayer.webp",
+                previewText: "MT5 EA Preview"
+            },
+            {
+                title: "ea_autoRunAgresifSellLayer",
+                category: "MQL5 EA",
+                tags: ["Trading", "Expert Advisor"],
+                description: "An advanced execution tool specifically optimized for XAUUSD (Gold) on the M1 timeframe. This version is strictly engineered for Sell-Only strategies, allowing you to profit from downward trends with high-speed entries and automated risk management.",
+                link: "#",
+                linkText: "PRIVATE USE (MQL5 MARKET SOON)",
+                colorClass: "bg-emerald-500",
+                tagColor: "text-emerald-400",
+                image: "assets/mql5_ea_autoRunAgresifSellLayer.webp",
+                previewText: "MT5 EA Preview"
+            },
+            {
+                title: "UniversalSLTPManager",
+                category: "MQL5 EA",
+                tags: ["Trading", "Expert Advisor"],
+                description: "PEnsure your trading account is never left unprotected. UniversalSLTPManager is a powerful utility designed to automatically scan and apply Stop Loss (SL) and Take Profit (TP) to every open position on your account—regardless of how the trade was opened.",
+                link: "#",
+                linkText: "COMMERCIAL USE (DOWNLOAD, MQL5 MARKET SOON )",
+                colorClass: "bg-emerald-500",
+                tagColor: "text-emerald-400",
+                image: "assets/mql5_ea_UniversalSLTPManager.webp",
+                previewText: "MT5 EA Preview"
+            },
+            {
+                title: "script_AutoCloseManager",
+                category: "MQL5 SCRIPT",
+                tags: ["Trading", "SCRIPT MT5"],
+                description: "Take full control of your trading account with BMA Auto Close Manager. Designed to handle multiple order types simultaneously, this tool ensures your workspace stays clean and your risk is managed by automatically closing positions and deleting pending orders based on your specific profit or loss targets.",
+                link: "#",
+                linkText: "COMMERCIAL USE (DOWNLOAD, MQL5 MARKET SOON )",
+                colorClass: "bg-emerald-500",
+                tagColor: "text-emerald-400",
+                image: "assets/mql5_script_AutoCloseManager.webp",
+                previewText: "MT5 SCRIPT Preview"
+            }
+        ];
+
+        // --- CORE PERFORMANCE ENGINE ---
+        // 1. Initialize Animations
+        AOS.init({ duration: 800, easing: "ease-out-cubic", once: true });
+
+        // 2. Scroll Header Effect
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 20) navbar.classList.add("scrolled");
+            else navbar.classList.remove("scrolled");
+        });
+
+        // 3. Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute("href"));
+                if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        });
+
+        // 4. Project Renderer Logic
+        const generateCardHTML = (project, index, isCloned = false) => {
+            const aosDelay = (index % PORTFOLIO_DATA.length) * 100;
+            const aosAttr = isCloned ? '' : `data-aos="fade-up" data-aos-delay="${aosDelay}"`;
+            return `
+                <div class="group bg-white border border-ui-border rounded-3xl overflow-hidden hover:border-brand-primary transition-all duration-500 shadow-premium hover:shadow-premium-hover shrink-0 ${isCloned ? 'cloned-item' : ''}" ${aosAttr}>
+                    <div class="h-56 bg-white flex items-center justify-center p-10 relative">
+                        <div class="w-full h-full bg-white rounded-xl border border-ui-border flex items-center justify-center text-txt-main font-semibold text-sm group-hover:scale-105 transition-transform duration-500 text-center px-4 overflow-hidden">
+                            ${project.image ? `<img src="${project.image}" alt="${project.title}" class="w-full h-full object-contain p-4">` : project.previewText}
+                        </div>
+                        <div class="absolute top-4 right-4 ${project.colorClass} text-[10px] font-black px-3 py-1 rounded-full text-white shadow-sm">${project.category}</div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex gap-2 mb-4 text-[10px] font-bold tracking-widest uppercase ${project.tagColor}">
+                            ${project.tags.map(tag => `<span>${tag}</span>`).join(' • ')}
+                        </div>
+                        <h3 class="text-2xl font-bold text-txt-main mb-3">${project.title}</h3>
+                        <p class="text-txt-muted text-sm leading-relaxed mb-8">${project.description}</p>
+                        <div class="flex items-center justify-between">
+                            <a href="${project.link}" class="text-txt-main font-bold text-sm flex items-center gap-2 group-hover:gap-4 transition-all uppercase">
+                                ${project.linkText} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        };
+
+        const renderProjects = () => {
+            const grid = document.getElementById("project-grid");
+            const counter = document.getElementById("project-counter");
+            const dotsContainer = document.getElementById("slider-dots");
+            if (!grid) return;
+
+            // Step A: Instant Static Render (12 items)
+            const mainGroupHTML = PORTFOLIO_DATA.map((p, i) => generateCardHTML(p, i, false)).join("");
+            grid.innerHTML = mainGroupHTML;
+            if (counter) counter.textContent = `Showing ${PORTFOLIO_DATA.length} Projects`;
+            if (dotsContainer) dotsContainer.innerHTML = PORTFOLIO_DATA.map((_, i) => `<div class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`).join("");
+
+            // Step B: Background Clone Injection (Anti-Freeze)
+            setTimeout(() => {
+                const groupA_HTML = PORTFOLIO_DATA.map((p, i) => generateCardHTML(p, i, true)).join("");
+                const groupC_HTML = PORTFOLIO_DATA.map((p, i) => generateCardHTML(p, i, true)).join("");
+                grid.innerHTML = groupA_HTML + mainGroupHTML + groupC_HTML;
+                const cardWidth = grid.querySelector('.group').offsetWidth + 32;
+                grid.scrollLeft = PORTFOLIO_DATA.length * cardWidth;
+                currentSlideIndex = PORTFOLIO_DATA.length;
+                initSliderOnce();
+            }, 500);
+        };
+
+        // 5. Slider Interaction Engine
+        let autoScrollInterval, currentSlideIndex = 0, isJumping = false, isSliderInitialized = false;
+        const startAutoScroll = () => {
+            stopAutoScroll();
+            autoScrollInterval = setInterval(() => {
+                const grid = document.getElementById("project-grid");
+                const wrapper = document.getElementById("project-slider-wrapper");
+                if (!grid || !wrapper || !wrapper.classList.contains("slider-active") || isJumping) return;
+                currentSlideIndex++;
+                const cardWidth = grid.querySelector('.group').offsetWidth + 32;
+                grid.scrollTo({ left: currentSlideIndex * cardWidth, behavior: "smooth" });
+            }, 3000);
+        };
+        const stopAutoScroll = () => { if (autoScrollInterval) clearInterval(autoScrollInterval); };
+
+        const initSlider = () => {
+            const grid = document.getElementById("project-grid");
+            const dotsContainer = document.getElementById("slider-dots");
+            const wrapper = document.getElementById("project-slider-wrapper");
+            const expandTrigger = document.getElementById("expand-trigger");
+            if (!grid || !dotsContainer) return;
+
+            dotsContainer.addEventListener("click", (e) => {
+                const dot = e.target.closest(".dot");
+                if (!dot) return;
+                currentSlideIndex = PORTFOLIO_DATA.length + parseInt(dot.dataset.index);
+                grid.scrollTo({ left: currentSlideIndex * (grid.querySelector('.group').offsetWidth + 32), behavior: "smooth" });
+                startAutoScroll();
+            });
+
+            grid.addEventListener("scroll", () => {
+                if (!wrapper.classList.contains("slider-active") || isJumping) return;
+                const cardWidth = grid.querySelector('.group').offsetWidth + 32;
+                const totalWidth = PORTFOLIO_DATA.length * cardWidth;
+                if (grid.scrollLeft >= totalWidth * 2) {
+                    isJumping = true; grid.classList.add('no-snap'); grid.scrollLeft -= totalWidth; 
+                    grid.classList.remove('no-snap'); setTimeout(() => isJumping = false, 50);
+                } else if (grid.scrollLeft <= totalWidth * 0.5) {
+                    isJumping = true; grid.classList.add('no-snap'); grid.scrollLeft += totalWidth; 
+                    grid.classList.remove('no-snap'); setTimeout(() => isJumping = false, 50);
+                }
+                const activeIndex = Math.round(grid.scrollLeft / cardWidth) % PORTFOLIO_DATA.length;
+                dotsContainer.querySelectorAll(".dot").forEach((dot, i) => dot.classList.toggle("active", i === activeIndex));
+                if (!isJumping) currentSlideIndex = Math.round(grid.scrollLeft / cardWidth);
+            });
+
+            grid.addEventListener("mouseenter", stopAutoScroll);
+            grid.addEventListener("mouseleave", () => { if (wrapper.classList.contains("slider-active")) startAutoScroll(); });
+
+            if (expandTrigger) {
+                expandTrigger.addEventListener("click", () => {
+                    const isSlider = wrapper.classList.toggle("slider-active");
+                    wrapper.classList.toggle("grid-active");
+                    dotsContainer.classList.toggle("hidden-nav");
+                    const counterText = expandTrigger.querySelector('#project-counter');
+                    if(counterText) counterText.textContent = isSlider ? `Showing ${PORTFOLIO_DATA.length} Projects` : "Collapse Grid View";
+                    expandTrigger.querySelector('svg').style.transform = isSlider ? "rotate(0deg)" : "rotate(90deg)";
+                    if (isSlider) {
+                        grid.scrollLeft = PORTFOLIO_DATA.length * (grid.querySelector('.group').offsetWidth + 32);
+                        startAutoScroll();
+                    } else stopAutoScroll();
+                });
+            }
+            startAutoScroll();
+        };
+
+        const initSliderOnce = () => { if (!isSliderInitialized) { initSlider(); isSliderInitialized = true; } };
+        window.addEventListener("DOMContentLoaded", renderProjects);
+    </script>
 </body>
 </html>

@@ -8,9 +8,31 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="shortcut icon" href="favicon.ico">
-    <!-- Theme & Global Styles -->
-    <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="style.css">
+    <!-- Inline Critical Styles for Zero-Loading -->
+    <style>
+        :root {
+          --color-primary: #2563eb;
+          --color-primary-light: #3b82f6;
+          --color-primary-dark: #1d4ed8;
+          --text-main: #020617;
+          --text-muted: #334155;
+          --text-dim: #64748b;
+          --border-color: rgba(0, 0, 0, 0.05);
+          --bg-card-hover: #ffffff;
+          --gradient-primary: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+        }
+    </style>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Kaptech SW: Aktif!'))
+                    .catch(err => console.log('Kaptech SW: Gagal!', err));
+            });
+        }
+    </script>
     <style> 
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding:2em; line-height: 1.8; color: var(--text-muted); max-width: 900px; margin: auto; background-color: #f8fafc; }
         .container { background-color: #ffffff; padding: 40px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); }

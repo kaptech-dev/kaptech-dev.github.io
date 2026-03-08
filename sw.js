@@ -1,12 +1,9 @@
 // Project: Kaptech Portfolio | File: sw.js | Description: Service Worker untuk Offline Caching & Ultra-Fast Loading
-const CACHE_NAME = 'kaptech-v1';
+const CACHE_NAME = 'kaptech-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './privacy-policy.html',
-  './style.css',
-  './theme.css',
-  './script.js',
   './favicon.ico',
   './app-ads.txt',
   './assets/android_icon_countertasbih.webp',
