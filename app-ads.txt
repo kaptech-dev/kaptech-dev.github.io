@@ -7,7 +7,13 @@
 # Nama Paket: com.kaptech.countertasbihdigital
 google.com, pub-9130761109961234, DIRECT, f08c47fec0942fa0
 
-# 2. Aplikasi RiseSocial: Profil Booster
-# Nama Paket: com.kaptech.countertasbihdigital
+# 2. Aplikasi RiseSocial: Profile Booster
+# Nama Paket: com.kaptech.followforfollowtiktok
+google.com, pub-8232392496552444, DIRECT, f08c47fec0942fa0
+
+# 3. Aplikasi Media Downloader
+# Nama Paket: com.kaptech.
+
+
 
 
